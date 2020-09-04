@@ -31,7 +31,7 @@ def main(unused_argv):
     logging.info("will use task conf file %s" % conf_file_path)
     task_config = create_task_config(FLAGS, conf_file_path)
     hparams = create_hparams(task_config=task_config)
-    print hparams
+    print(hparams)
 
     parser = ModelFeatureParser(hparams)
     model = DeepMatch(parser, hparams)
@@ -39,9 +39,7 @@ def main(unused_argv):
     # start the training
     try:
         run_validating(hparams=hparams, model=model)
-    except Exception, e:
-        logging.error("catch a exception: %s" % e.message)
-        logging.error("exception is: %s" % traceback.format_exc())
+    except Exception as e:
         raise Exception("terminate process!")
 
 
